@@ -5,9 +5,9 @@ html, body{
 .fields{
     border-left: 1px solid #000;
     border-top: 1px solid #000;
-    width: 400px;
     margin: 20px;
     overflow: hidden;
+    display: inline-block;
 }
 
 .fields > div{
@@ -19,10 +19,18 @@ html, body{
     float: left;
 }
 
-.fruit{
+.fields > div.row-start{
+    clear: both;
+}
+
+.fields > div[data-game="fruit"]{
     background: #f00;
 }
 
-.snake{
+.fields > div[data-game="snake"]{
     background: #ff0;
+}
+
+.fields > div[data-game="wall"]{
+    background: #00f;
 }

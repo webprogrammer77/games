@@ -5,6 +5,7 @@ class Snake {
 		this.x = x;
 		this.y = y;
 		this.course = course;
+		this.alive = true;
 	}
 
 	show() {
@@ -12,46 +13,51 @@ class Snake {
 	}
 
 	move() {
-		this.matrix.setCell(this.x, this.y, '');
+		let lastX = this.x;
+		let lastY = this.y;
+		if (!this.alive){
+			return;
+		}
+		
 
 		switch (this.course) {
 			case 'right':
 				this.x++;
-					if (this.x > 19) {
-						this.x = 19;
-					}
+					// if (this.x > this.matrix.cols) {
+					// 	this.x = this.matrix.cols;
+					// }
 
 				break;
 			case 'left':
 				this.x--;
-					if (this.x < 0) {
-						this.x = 0;
-					}
+					// if (this.x < 1) {
+					// 	this.x = 1;
+					// }
 
 				break;
 			case 'top':
 				this.y--;
-					if (this.y < 0) {
-						this.y = 0;
-					}
+					// if (this.y < 1) {
+					// 	this.y = 1;
+					// }
 
 				break;
 			case 'bottom':
 				this.y++;
-					if (this.y > 19) {
-						this.y = 19;
-					}
+					// if (this.y  > this.matrix.rows) {
+					// 	this.y = this.matrix.rows;
+					// }
 
 				break;
 		}
+	/*
 	
-	
-		if (this.x % 20 == 0) {
+		if (this.x % this.matrix.cols == 1) {
 
-			if (this.course == 'left' && this.y % 20 != 0) {
+			if (this.course == 'left' && this.y % this.matrix.rows != 1) {
 				this.course = 'top';
 			}
-			if (this.y % 20 == 19) {
+			if (this.y % this.matrix.rows == 0) {
 				if (this.course == 'bottom') {
 					this.course = 'right';
 				}
@@ -59,7 +65,7 @@ class Snake {
 					this.course = 'top';
 				}
 			}
-			if (this.y % 20 == 0) {
+			if (this.y % this.matrix.rows == 1) {
 				if (this.course == 'top') {
 					this.course = 'right';
 				}
@@ -69,12 +75,12 @@ class Snake {
 			}
 
 		}
-		if (this.x % 20 == 19) {
+		if (this.x % this.matrix.cols == 0) {
 
-			if (this.course == 'right' && this.y % 20 != 19) {
+			if (this.course == 'right' && this.y % this.matrix.rows != 0) {
 				this.course = 'bottom';
 			}
-			if (this.y % 20 == 19) {
+			if (this.y % this.matrix.rows == 0) {
 				if (this.course == 'bottom') {
 					this.course = 'left';
 				}
@@ -82,7 +88,7 @@ class Snake {
 					this.course = 'top';
 				}
 			}
-			if (this.y % 20 == 0) {
+			if (this.y % this.matrix.rows == 1) {
 				if (this.course == 'top') {
 					this.course = 'left';
 				}
@@ -92,42 +98,32 @@ class Snake {
 			}
 
 		}
-		if (this.y % 20 == 19) {
+		if (this.y % this.matrix.rows == 0) {
 			if (this.course == 'bottom') {
 				this.course = 'left';
 			}
 		}
-		if (this.y % 20 == 0) {
+		if (this.y % this.matrix.rows == 1) {
 			if (this.course == 'top') {
 				this.course = 'right';
 			}
 		}
 
+*/
+		console.log(this.y % this.matrix.rows);
+		console.log(this.x % this.matrix.cols);
 
-		console.log(this.y % 20);
-		console.log(this.x % 20);
+		if (!this._chekAlive()){
+			this.alive = false;
+			return;
+		}
+		this.matrix.setCell(lastX, lastY, '');
 		this.matrix.setCell(this.x, this.y, 'snake');
 	}
 
-	moveRect(e) {
-
-		switch (e.keyCode) {
-
-			case 37: // если нажата клавиша влево
-				this.course = 'left';
-				break;
-			case 38: // если нажата клавиша вверх
-				this.course = 'top';
-				break;
-			case 39: // если нажата клавиша вправо
-				this.course = 'right';
-				break;
-			case 40: // если нажата клавиша вниз
-				this.course = 'bottom';
-				break;
-		}
+	_chekAlive(){
+		return this.x >= 1 && this.x <= this.matrix.cols &&
+					 this.y >= 1 && this.y <= this.matrix.rows
 	}
-
-
 
 }
