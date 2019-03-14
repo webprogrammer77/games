@@ -7,6 +7,7 @@ class Snake extends Elem{
 				this.alive = true;
 				this.weight = 0;
 				this.eating = false;
+				this.fruits = ['apple', 'orange', 'limon'];
     }
 
     move(){
@@ -35,23 +36,21 @@ class Snake extends Elem{
             this.alive = false;
             return;
         }
-        
-        /* getCell 
-         *  фрукт - покушали, хвост не отпал
-         *  стена - gameover
-         *  змея - gameoverстена - gameover
-         * */
-				//this.cords.unshift(head);
+  
 				let val = this.matrix.getCell(head[0], head[1]);
-				//console.log(val);
-				if (val === 'fruit') {
+	
+				for(let fruit of this.fruits){
+						if (val === fruit) {
 
-					this.cords.unshift(head);
-					this.matrix.setCell(head[0], head[1], 'snake');
-					this.eating = true;
-					this.weight++;
+							this.cords.unshift(head);
+							this.matrix.setCell(head[0], head[1], 'snake');
+							this.eating = true;
+							this.weight++;
 
-				} else if (val === 'wall') {
+						}
+				}
+			
+				if (val === 'wall') {
 
 						this.alive = false;
 						return;

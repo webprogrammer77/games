@@ -23,8 +23,20 @@ html, body{
     clear: both;
 }
 
-.fields > div[data-game="fruit"]{
-    background: #f00;
+.fields > div[data-game="apple"]{
+		background: #f00;
+		background: url(../img/ap.png) no-repeat 50% 50%;
+		background-size: 110%;
+}
+.fields > div[data-game="limon"]{
+		background: green;
+		background: url(../img/l.png) no-repeat 50% 50%;
+		background-size: 110%;
+}
+.fields > div[data-game="orange"]{
+		background: orange;
+			background: url(../img/or.png) no-repeat 50% 50%;
+		background-size: 110%;
 }
 
 .fields > div[data-game="snake"]{

@@ -1,8 +1,5 @@
 class Matrix{
-    
-    /* 
-     * на дз - M x N
-     * */
+
     constructor(elem, rows = 20, cols = 20){
         this.elem = elem;
         this.cells = [];
@@ -35,7 +32,6 @@ class Matrix{
         this.elem.children[num].setAttribute('data-game', val);
     }
     
-    /* пересчитать № строки и № столбца в i */ 
     _calcNum(x, y){
         return (y - 1) * this.cols + x - 1;
     }
