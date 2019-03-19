@@ -12,7 +12,7 @@ window.onload = function (e) {
 		rows = matrix.rows;
 
 	setFruit()
-	var wall = new Wall(matrix, [
+	let wall = new Wall(matrix, [
 		[3, 7],
 		[4, 7],
 		[5, 7],
@@ -20,7 +20,7 @@ window.onload = function (e) {
 	]);
 	wall.show();
 
-	var snake = new Snake(matrix, [
+	let snake = new Snake(matrix, [
 		[5, 5],
 		[4, 5],
 		[3, 5]
@@ -28,21 +28,25 @@ window.onload = function (e) {
 	snake.show();
 
 	document.onkeydown = function (e) {
-		var course = snake.course;
-		snake.course = e.keyCode;
+		
 
 		switch (e.keyCode) {
 			case 37:
-				course === 'right' ? snake.course = 'right' : snake.course = 'left';
+				if (snake.course !== 'right') {
+					snake.newcourse = 'left';
+				}
 				break;
 			case 38:
-				course === 'down' ? snake.course = 'down' : snake.course = 'up';
+				if (snake.course !== 'down') {
+					snake.newcourse = 'up';}
 				break;
 			case 39:
-				course === 'left' ? snake.course = 'left' : snake.course = 'right';
+				if (snake.course !== 'left') {
+					snake.newcourse = 'right';}
 				break;
 			case 40:
-				course === 'up' ? snake.course = 'up' : snake.course = 'down';
+				if (snake.course !== 'up') {
+					snake.newcourse = 'down';}
 				break;
 		}
 	}
@@ -73,24 +77,30 @@ window.onload = function (e) {
 
 	function setFruit() {
 
-		var x = randomInteger(1, cols);
-		var y = randomInteger(1, rows);
-		var val = matrix.getCell(x, y);
+		let x = Helpers.random(1, cols);
+		let y = Helpers.random(1, rows);
+	
 
-		setTimeout(function () {
-			if (val === '') {
+		
+		while (matrix.getCell(x, y) !== '') {
+			 x = Helpers.random(1, cols);
+			 y = Helpers.random(1, rows);
+		}
+		(new Fruit(matrix, [
+			[x, y]
+		])).show();
+		
+		/*let val = matrix.getCell(x, y);
+		if (val === '') {
 
-				let fruit = new Fruit(matrix, [
-					[x, y]
-				]);
-				fruit.show();
+				(new Fruit(matrix, [[x, y]])).show();
 
 
 			} else {
 				setFruit();
 
-			}
-		}, 200);
+			}*/
+	
 	}
 
 

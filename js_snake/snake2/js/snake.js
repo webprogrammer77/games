@@ -1,21 +1,25 @@
 class Snake extends Elem{
     
-    constructor(matrix, coords, course){
+		constructor(matrix, coords, course){
         super(matrix, coords);
         this.value = 'snake';
         this.course = course;
+        this.newcourse = course;
 				this.alive = true;
 				this.weight = 0;
 				this.eating = false;
 				this.fruits = ['apple', 'orange', 'limon'];
+				// this.fruits = fruit.value;
     }
 
     move(){
         if(!this.alive){
             return;
-        }
+				}
+				this.course = this.newcourse;
         this.eating = false;
-        var head = this.cords[0].slice();
+				var head = this.cords[0].slice();
+			
 
         switch(this.course){
             case 'right':

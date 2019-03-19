@@ -8,7 +8,7 @@ class Fruit extends Elem {
 	}
 	  show() {
 	  	for (let cord of this.cords) {
-				let fruit = this.value[this._random(0, this.fruitsLen - 1)];
+				let fruit = this.value[Helpers.random(0, this.fruitsLen - 1)];
 				console.log(fruit);
 				
 				this.matrix.setCell(cord[0], cord[1], fruit);
