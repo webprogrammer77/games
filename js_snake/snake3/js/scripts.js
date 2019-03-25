@@ -58,8 +58,8 @@ window.onload = function (e) {
 
 		if (!snake.alive) {
 			clearInterval(timer);
-			alert('gameover');
-			// document.querySelector('.input_display').style.display= "inline-block";
+			// alert('gameover');
+			document.querySelector('.input_display').style.display= "inline-block";
 		}
 
 		if (snake.eating) {
